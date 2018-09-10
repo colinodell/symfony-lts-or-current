@@ -1,5 +1,5 @@
-Enforcing Long Term Supported Versions of the Symfony Components
-================================================================
+Enforcing LTS or Current Versions of the Symfony Components
+===========================================================
 
 Using `symfony/symfony` makes Composer install all Symfony Components, all in
 the same version. But when using the standalone packages, Composer might
@@ -9,12 +9,17 @@ is compatible with `symfony/event-dispatcher` v4.0 for instance).
 This is fine if you don't want to stick to Symfony LTS versions and if your
 code does not use these transitive dependencies.
 
-This Composer package allows you to enforce a consistent major version on all
-Symfony Components, whether they are explicitly listed as a project's
-dependency or installed transitively.
+This package allows you to force Composer to always use an LTS or current
+version of Symfony Components, whether they are explicitly listed as a
+project's dependency or installed transitively.
 
 Note that this package is meant to be used by projects. Library authors SHOULD
 NOT use it, except maybe in the `"require-dev"` Composer section.
+
+This is similar to how [`symfony/lts`](https://github.com/symfony/lts) works,
+but instead allows mixing and matching of different major versions provided
+they are all LTS or current. See <https://symfony.com/roadmap> for the latest
+information on supported versions.
 
 Usage
 -----
@@ -22,18 +27,11 @@ Usage
 Use the Composer command line:
 
 ```bash
-composer require symfony/lts v3
+composer require colinodell/symfony-lts-or-current dev-master
 ```
 
 Versioning Policy
 ------------------
 
-There is only one version of the `symfony/lts` package per major Symfony
-version. Each version is tagged at the same time as the *last* minor version of
-each major release (`v4` when Symfony `v4.4.0` is out.)
-
-At the same time also, the Composer `branch-alias` is increased to the next
-major version number.
-
-If one wants to use the next *unreleased* major version of Symfony, one should
-not use this package at all.
+Because support for LTS and current versions changes over time, this package
+is only available as `dev-master`.
